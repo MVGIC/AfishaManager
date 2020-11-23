@@ -1,21 +1,20 @@
 package ru.netology.domain;
 
-
-public class FilmsInfo {
+public class Afisha {
     private int id;
+    private int filmsToShow = 10;
     private String filmName;
-    private int showLast = 10;
 
-    public FilmsInfo(int id, String filmName) {
+    public Afisha() {
+    }
+
+    public Afisha(int id, String filmName) {
         this.id = id;
         this.filmName = filmName;
     }
 
-    public FilmsInfo(int showLast) {
-        this.showLast = showLast;
-    }
-
-    public FilmsInfo() {
+    public Afisha(int filmsToShow) {
+        this.filmsToShow = filmsToShow;
     }
 
     public int getId() {
@@ -34,11 +33,11 @@ public class FilmsInfo {
         this.filmName = filmName;
     }
 
-    public int getShowLast() {
-        return showLast;
+    public int getFilmsToShow() {
+        return filmsToShow;
     }
 
-    public void setShowLast(int showLast) {
-        this.showLast = showLast;
+    public void setFilmsToShow(int filmsToShow) {
+        this.filmsToShow = filmsToShow;
     }
 }

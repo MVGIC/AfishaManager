@@ -1,14 +1,22 @@
 package ru.netology.manager;
 
-import ru.netology.domain.FilmsInfo;
+import ru.netology.domain.Afisha;
 
 public class AfishaManager {
-    private FilmsInfo[] films = new FilmsInfo[0];
+    private Afisha[] films = new Afisha[0];
+    private int filmsToShow = 10;
 
-    public void add(FilmsInfo film) {
+    public AfishaManager() {
+    }
+
+    public AfishaManager(int filmsToShow) {
+        this.filmsToShow = filmsToShow;
+    }
+
+    public void add(Afisha film) {
         // создаём новый массив размером на единицу больше
         int length = films.length + 1;
-        FilmsInfo[] tmp = new FilmsInfo[length];
+        Afisha[] tmp = new Afisha[length];
         // itar + tab
         // копируем поэлементно
         // for (int i = 0; i < films.length; i++) {
@@ -21,12 +29,12 @@ public class AfishaManager {
         films = tmp;
     }
 
-    public FilmsInfo[] getAll() {
-        FilmsInfo[] result = new FilmsInfo[films.length];
+    public Afisha[] getAll() {
+        Afisha[] result = new Afisha[films.length];
         // перебираем массив в прямом порядке
         // но кладём в результаты в обратном
         for (int i = 0; i < result.length; i++) {
-            int index = films.length - i - 1;
+            int index = films.length- i - 1;
             result[i] = films[index];
         }
         return result;
