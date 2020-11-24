@@ -2,19 +2,11 @@ package ru.netology.domain;
 
 public class Afisha {
     private int id;
-    private int filmsToShow = 10;
     private String filmName;
-
-    public Afisha() {
-    }
 
     public Afisha(int id, String filmName) {
         this.id = id;
         this.filmName = filmName;
-    }
-
-    public Afisha(int filmsToShow) {
-        this.filmsToShow = filmsToShow;
     }
 
     public int getId() {
@@ -31,13 +23,5 @@ public class Afisha {
 
     public void setFilmName(String filmName) {
         this.filmName = filmName;
-    }
-
-    public int getFilmsToShow() {
-        return filmsToShow;
-    }
-
-    public void setFilmsToShow(int filmsToShow) {
-        this.filmsToShow = filmsToShow;
     }
 }

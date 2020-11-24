@@ -7,7 +7,7 @@ import ru.netology.domain.Afisha;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class AfishaManagerTestNonEmptyWithSetup {
-    private AfishaManager manager = new AfishaManager();
+    private AfishaManager manager = new AfishaManager(5);
     private Afisha first = new Afisha(1, "Bloodshot");
     private Afisha second = new Afisha(2, "Move_on");
     private Afisha third = new Afisha(3, "Hotel_Belgrad");
@@ -44,10 +44,11 @@ public class AfishaManagerTestNonEmptyWithSetup {
 
     @Test
     public void shouldShowLimit() {
+//        manager.add(tenth);
         manager.getAll();
 
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Afisha[] expected = new Afisha[]{ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
 
         assertArrayEquals(expected, actual);
     }

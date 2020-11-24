@@ -4,13 +4,14 @@ import ru.netology.domain.Afisha;
 
 public class AfishaManager {
     private Afisha[] films = new Afisha[0];
-    private int filmsToShow = 10;
 
-    public AfishaManager() {
-    }
+    private int filmsToShow = 10;
 
     public AfishaManager(int filmsToShow) {
         this.filmsToShow = filmsToShow;
+    }
+
+    public AfishaManager() {
     }
 
     public void add(Afisha film) {
@@ -34,7 +35,7 @@ public class AfishaManager {
         // перебираем массив в прямом порядке
         // но кладём в результаты в обратном
         for (int i = 0; i < result.length; i++) {
-            int index = films.length- i - 1;
+            int index = films.length - i - 1;
             result[i] = films[index];
         }
         return result;
