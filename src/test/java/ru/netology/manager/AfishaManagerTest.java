@@ -43,21 +43,24 @@ public class AfishaManagerTest {
         manager.add(fifteenth);
 
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Afisha[] expected = new Afisha[]{fifteenth, fourteenth, thirteenth, twelfth, eleventh, tenth, ninth, eighth, seventh, sixth};
 
         assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    public void shouldAdd() {
-//        manager.add(tenth);
-//
-//        Afisha[] actual = manager.getAll();
-//        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
-//
+    @Test
+    public void shouldAdd() {
+        AfishaManager manager = new AfishaManager();
+        Afisha first = new Afisha(1, "Bloodshot");
 
-//        assertArrayEquals(expected, actual);
-//    }
+        manager.add(first);
+
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{first};
+
+
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void shouldShowLimit() {
