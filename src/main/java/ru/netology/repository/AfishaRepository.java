@@ -30,4 +30,12 @@ public class AfishaRepository {
         }
         films = tmp;
     }
+
+//    public findById(int id){
+//
+//    }
+//
+//    public void removeAll(){
+//
+//    }
 }

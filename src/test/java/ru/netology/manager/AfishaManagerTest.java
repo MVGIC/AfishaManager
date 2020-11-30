@@ -1,15 +1,25 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Afisha;
+import ru.netology.repository.AfishaRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class AfishaManagerTest {
+    @Mock
+    private AfishaRepository repository;
+    @InjectMocks
+    private AfishaManager manager;
 
     @Test
     public void shouldShowOverLimit() {
-        AfishaManager manager = new AfishaManager();
         Afisha first = new Afisha(1, "Bloodshot");
         Afisha second = new Afisha(2, "Move_on");
         Afisha third = new Afisha(3, "Hotel_Belgrad");
@@ -42,29 +52,34 @@ public class AfishaManagerTest {
         manager.add(fourteenth);
         manager.add(fifteenth);
 
+        Afisha[] returned = new Afisha[]{sixth, seventh, eighth, ninth, tenth, eleventh, twelfth, thirteenth, fourteenth, fifteenth};
+        doReturn(returned).when(repository).findAll();
+
         Afisha[] actual = manager.getAll();
         Afisha[] expected = new Afisha[]{fifteenth, fourteenth, thirteenth, twelfth, eleventh, tenth, ninth, eighth, seventh, sixth};
-
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldAdd() {
-        AfishaManager manager = new AfishaManager();
         Afisha first = new Afisha(1, "Bloodshot");
 
         manager.add(first);
 
+        Afisha[] returned = new Afisha[]{first};
+        doReturn(returned).when(repository).findAll();
+
         Afisha[] actual = manager.getAll();
         Afisha[] expected = new Afisha[]{first};
-
-
         assertArrayEquals(expected, actual);
+
+        verify(repository).save(first);
     }
 
     @Test
     public void shouldShowLimit() {
-        AfishaManager manager = new AfishaManager();
         Afisha first = new Afisha(1, "Bloodshot");
         Afisha second = new Afisha(2, "Move_on");
         Afisha third = new Afisha(3, "Hotel_Belgrad");
@@ -87,15 +102,18 @@ public class AfishaManagerTest {
         manager.add(ninth);
         manager.add(tenth);
 
+        Afisha[] returned = new Afisha[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth};
+        doReturn(returned).when(repository).findAll();
+
         Afisha[] actual = manager.getAll();
         Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
-
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
     }
 
     @Test
     public void shouldShowUnderLimit() {
-        AfishaManager manager = new AfishaManager();
         Afisha first = new Afisha(1, "Bloodshot");
         Afisha second = new Afisha(2, "Move_on");
         Afisha third = new Afisha(3, "Hotel_Belgrad");
@@ -108,9 +126,39 @@ public class AfishaManagerTest {
         manager.add(fourth);
         manager.add(fifth);
 
+        Afisha[] returned = new Afisha[]{first, second, third, fourth, fifth};
+        doReturn(returned).when(repository).findAll();
+
         Afisha[] actual = manager.getAll();
         Afisha[] expected = new Afisha[]{fifth, fourth, third, second, first};
-
         assertArrayEquals(expected, actual);
+
+        verify(repository).findAll();
+    }
+
+    @Test
+    public void shouldRemoveIfExist() {
+        Afisha first = new Afisha(1, "Bloodshot");
+        Afisha second = new Afisha(2, "Move_on");
+        Afisha third = new Afisha(3, "Hotel_Belgrad");
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+
+        int idToRemove = 1;
+
+        Afisha[] returned = new Afisha[]{second, third};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).removeById(idToRemove);
+
+        manager.removeById(idToRemove);
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{third, second};
+        assertArrayEquals(expected, actual);
+
+        verify(repository).removeById(idToRemove);
+
+
     }
 }
