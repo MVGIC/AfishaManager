@@ -31,11 +31,20 @@ public class AfishaRepository {
         films = tmp;
     }
 
-//    public findById(int id){
-//
-//    }
-//
-//    public void removeAll(){
-//
-//    }
+    public Afisha[] findById(int id) {
+        Afisha[] result = new Afisha[films.length];
+        int index = 0;
+        for (Afisha film : films) {
+            if (film.getId() != id) {
+                result[index] = film;
+                index++;
+            }
+        }
+        return result;
+    }
+
+    public Afisha[] removeAll() {
+        Afisha[] result = new Afisha[0];
+        return result;
+    }
 }

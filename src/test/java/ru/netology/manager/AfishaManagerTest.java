@@ -158,7 +158,29 @@ public class AfishaManagerTest {
         assertArrayEquals(expected, actual);
 
         verify(repository).removeById(idToRemove);
+    }
 
+    @Test
+    public void shouldNotRemoveIfNotExist() {
+        Afisha first = new Afisha(1, "Bloodshot");
+        Afisha second = new Afisha(2, "Move_on");
+        Afisha third = new Afisha(3, "Hotel_Belgrad");
 
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+
+        int idToRemove = 4;
+
+        Afisha[] returned = new Afisha[]{first, second, third};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).removeById(idToRemove);
+
+//        manager.removeById(idToRemove);
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{third, second, first};
+        assertArrayEquals(expected, actual);
+
+        verify(repository).removeById(idToRemove);
     }
 }
