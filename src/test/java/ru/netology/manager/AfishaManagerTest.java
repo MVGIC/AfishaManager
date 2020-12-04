@@ -205,4 +205,24 @@ public class AfishaManagerTest {
 
        verify(repository).findById(idToFind);
     }
+    @Test
+    public void shouldRemoveAll() {
+        Afisha first = new Afisha(1, "Bloodshot");
+        Afisha second = new Afisha(2, "Move_on");
+        Afisha third = new Afisha(3, "Hotel_Belgrad");
+
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+
+        Afisha[] returned = new Afisha[0];
+        doReturn(returned).when(repository).findAll();
+
+        repository.removeAll();
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[0];
+        assertArrayEquals(expected, actual);
+
+        verify(repository).removeAll();
+    }
 }
