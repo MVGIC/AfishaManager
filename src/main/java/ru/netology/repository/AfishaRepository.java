@@ -31,15 +31,13 @@ public class AfishaRepository {
         films = tmp;
     }
 
-    public int findById(int id) {
-        int index = 0;
+    public Afisha findById(int id) {
         for (Afisha film : films) {
-            if (film.getId() != id) {
-                films[index] = film;
-                index++;
+            if (film.getId() == id) {
+               return film;
             }
         }
-        return index;
+        return null;
     }
 
     public void removeAll() {
