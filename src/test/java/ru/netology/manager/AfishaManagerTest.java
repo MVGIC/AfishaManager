@@ -203,8 +203,9 @@ public class AfishaManagerTest {
         Afisha[] expected = new Afisha[]{second};
         assertArrayEquals(expected, actual);
 
-       verify(repository).findById(idToFind);
+        verify(repository).findById(idToFind);
     }
+
     @Test
     public void shouldRemoveAll() {
         Afisha first = new Afisha(1, "Bloodshot");

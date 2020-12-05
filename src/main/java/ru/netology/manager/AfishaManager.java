@@ -5,6 +5,14 @@ import ru.netology.repository.AfishaRepository;
 
 public class AfishaManager {
     private AfishaRepository repository;
+    private int filmsToShow = 10;
+
+    public AfishaManager(int filmsToShow) {
+        this.filmsToShow = filmsToShow;
+    }
+
+    public AfishaManager() {
+    }
 
     public AfishaManager(AfishaRepository repository) {
         this.repository = repository;
@@ -16,7 +24,7 @@ public class AfishaManager {
 
     public Afisha[] getAll() {
         Afisha[] films = repository.findAll();
-        Afisha[] result = new Afisha[films.length];
+        Afisha[] result = new Afisha[Math.min(films.length,filmsToShow)];
         for (int i = 0; i < result.length; i++) {
             int index = films.length - i - 1;
             result[i] = films[index];
