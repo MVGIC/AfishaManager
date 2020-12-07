@@ -34,7 +34,7 @@ public class AfishaRepository {
     public Afisha findById(int id) {
         for (Afisha film : films) {
             if (film.getId() == id) {
-               return film;
+                return film;
             }
         }
         return null;
